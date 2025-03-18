@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fase3.unity
     guid: bfe8f1248b93ea14a90c361bf2bec838
+  - enabled: 1
+    path: Assets/Scenes/End.unity
+    guid: 7f2499f9879596540bce6ad952a371cf
   m_configObjects: {}
