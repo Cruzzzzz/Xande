@@ -7,20 +7,9 @@ public class MenuScript : MonoBehaviour
 {
     [SerializeField] private string NomeDoLevelDeJogo;
     [SerializeField] private GameObject PainelMenuInicial;
-    [SerializeField] private GameObject PainelOpcoes;
     public void Jogar()
     {
         SceneManager.LoadScene(NomeDoLevelDeJogo);
-    }
-    public void AbrirOpções()
-    {
-        PainelMenuInicial.SetActive(false);
-        PainelOpcoes.SetActive(true);
-    }
-    public void FecharOpções()
-    {
-        PainelOpcoes.SetActive(false);
-        PainelMenuInicial.SetActive(true);
     }
     public void SairJogo()
     {

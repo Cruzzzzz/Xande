@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -16,6 +18,9 @@ public class Player : MonoBehaviour
     private float horizontal;
     private bool groundCheck;
     private SpriteRenderer spriteRenderer;
+    public TMP_Text texto;
+    public string TMP_Text;
+    public GameManangerScript gameMananger;
 
     void Start()
     {
@@ -39,6 +44,9 @@ public class Player : MonoBehaviour
             direction = 1;  // Direita
             spriteRenderer.flipX = false; // Vira o sprite pra direita
         }
+        UpdateScoreText();
+
+        texto.text = "Paginas do livro :10/" + score.ToString();
 
         // Aplica o movimento
         body.velocity = new Vector2(horizontal * speed, body.velocity.y);
@@ -54,5 +62,31 @@ public class Player : MonoBehaviour
         {
             body.AddForce(new Vector2(0, jumpStrength * 100));
         }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+            if (life <= 0 && !isDead)
+            {
+                isDead = true;
+                gameMananger.GameOver();
+                Destroy(gameObject);
+            }
+        
+        if (collision.gameObject.CompareTag("Aumenta"))
+        {
+            score += 1;
+            Destroy(collision.gameObject);
+            UpdateScoreText();
+        }
+        if (collision.gameObject.CompareTag("MorreVoid"))
+        {
+            isDead = true;
+            gameMananger.GameOver();
+            Destroy(gameObject);
+        }
+    }
+    private void UpdateScoreText()
+    {
     }
 }
